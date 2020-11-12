@@ -12,7 +12,7 @@ netsh advfirewall firewall set rule group=”Windows Management Instrumentation�
 
 # Block WinRM / PS Remoting
 Disable-PSRemoting -Force
-Stop-Service WinRM
+Stop-Service WinRM -Force
 Set-Service WinRM -StartupType Disabled
 Set-NetFirewallRule -DisplayGroup ‘Windows Remote Management’ -Enabled False
 Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system -Name LocalAccountTokenFilterPolicy -Value 0
@@ -22,7 +22,7 @@ Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Para
 Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters -Name AutoShareServer -value 0
 
 # Disable LanmanServer
-Stop-Service LanmanServer
+Stop-Service LanmanServer -Force
 Set-Service LanmanServer -StartupType Disabled
 
 # Set RDP NLA to Enabled
